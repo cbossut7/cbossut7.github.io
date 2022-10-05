@@ -21,7 +21,7 @@
 title: Camille Bossut
 email: cbossut21@gatech.edu
 description: >- #no newlines 
-	PhD student at Georgia Tech.
+    PhD student at Georgia Tech.
 baseurl: "" # the subpath of your site, e.g. /blog
 url: "cbossut7.github.io" # the base hostname & protocol for your site, e.g. http://example.com
 github_username:  cbossut7
