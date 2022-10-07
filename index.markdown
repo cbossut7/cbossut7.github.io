@@ -3,8 +3,15 @@ layout: page
 title: About
 # permalink: /about/
 ---
+<div class="flex-mine"> 
+<img src="moi2.jpeg" alt="Camie Photo" width="200">
 
-Hello! I'm Camille (Camie) Bossut, a new PhD student at Georgia Tech. I work with Dr. Qirun Zhang in the field of programming languages. I'm passionate about using static code information to determine useful properties and make guarantees about dynamic behavior, or design new code optimizations.
+<div  class="padded"> 
+Hello! I'm Camille (Camie) Bossut, a new PhD student at Georgia Tech. I work under Dr. Qirun Zhang on various PL problems. I'm most passionate about using static program information to determine guarantees about dynamic behavior, and to design code optimizations.
+</div>
+
+
+</div>
 
 
         
