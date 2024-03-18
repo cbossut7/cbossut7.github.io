@@ -6,7 +6,7 @@ title: CV
 <div class="tall" > 
 
 
-<iframe src="Resume_2024_.pdf" style="width: 100%;height: 100%;border: none;"></iframe>
+<iframe src="Resume_2024.pdf" style="width: 100%;height: 100%;border: none;"></iframe>
 
 </div>
 
