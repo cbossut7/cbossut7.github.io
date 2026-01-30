@@ -11,14 +11,11 @@ title: B
     <title>Math with User Input Example</title>
 </head>
 <body>
-    <h2>Simple Addition Calculator</h2>
-    <input type="number" id="num1-input" placeholder="Enter first number">
-    <span>+</span>
-    <input type="number" id="num2-input" placeholder="Enter second number">
+    <h2>pangram hasher!</h2>
+    <input type="text" id="str-in" placeholder="enter pangram">
     <button onclick="calculateSum()">Calculate</button>
-    <p>Result: <strong id="result-output">0</strong></p>
-
-    <script src="script.js"></script>
+    <p>value: <strong id="result">0</strong></p>
+    <script src="beescript.js"></script>
 </body>
 
 </div>
