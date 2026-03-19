@@ -13,6 +13,13 @@ function calculateSum() {
 
     const str = document.getElementById("str-in").value;
 
+    const regex = /^[A-Za-z]+$/; 
+    if (!regex.test(str)){
+        document.getElementById("result").textContent = "error";
+    }
+
+    str = str.toLowerCase();
+
     let sum = 1; 
     for (let letter of str) {
         let val = letter.charCodeAt(0);
