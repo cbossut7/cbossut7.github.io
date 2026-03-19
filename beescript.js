@@ -18,10 +18,10 @@ function calculateSum() {
         document.getElementById("result").textContent = "error";
     }
 
-    str = str.toLowerCase();
+    let lower = str.toLowerCase();
 
     let sum = 1; 
-    for (let letter of str) {
+    for (let letter of lower) {
         let val = letter.charCodeAt(0);
         sum = ((sum + 1) * val) %1809;
         console.log(letter);
