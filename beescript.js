@@ -18,7 +18,7 @@ function calculateSum() {
         document.getElementById("result").textContent = "error";
     }
 
-    let lower = str.toLowerCase();
+    let lower = str.toLowerCase().replace(/\s/g, '');;
 
     let sum = 1; 
     for (let letter of lower) {
