@@ -13,23 +13,19 @@ function calculateSum() {
 
     const str = document.getElementById("str-in").value;
 
+    let trimmed = str.trim();
     const regex = /^[A-Za-z]+$/; 
-    if (!regex.test(str)){
+    if (!regex.test(trimmed)){
         document.getElementById("result").textContent = "error";
     }
-
-    let lower = str.toLowerCase().replace(/\s/g, '');;
-
-    let sum = 1; 
-    for (let letter of lower) {
-        let val = letter.charCodeAt(0);
-        sum = ((sum + 1) * val) %1809;
-        console.log(letter);
+    else {
+        let lower = trimmed.toLowerCase();
+        let sum = 1; 
+        for (let letter of lower) {
+            let val = letter.charCodeAt(0);
+            sum = ((sum + 1) * val) %1809;
+            console.log(letter);
+        }
+        document.getElementById("result").textContent = sum;
     }
-
-    // 3. Perform the calculation
-    // const sum = num1 + num2;
-
-    // 4. Display the result
-    document.getElementById("result").textContent = sum;
 }
