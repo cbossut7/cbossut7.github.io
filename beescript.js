@@ -74,23 +74,19 @@ function decryptMsg() {
     const key = Number(document.getElementById("result").textContent);
 
     let trimmed = str.trim();
-    const regex = /^[A-Za-z]+$/; 
-    if (!regex.test(trimmed)){
-        document.getElementById("decresult").textContent = "error";
+    
+    let lower = trimmed.toLowerCase();
+    let ind = 0;
+    let res = "";
+    for (let letter of lower) {
+        let val = letter.charCodeAt(0);
+        let letterind = val%97 + 1;
+        let newkey = powerMod(13, (29-(key + ind)-1) , 29);
+        let dec = (letterind * Number(newkey)) % 29;
+        res += String.fromCharCode(dec + 96);
+        ind += 1;
+        // console.log(letter);
     }
-    else {
-        let lower = trimmed.toLowerCase();
-        let ind = 0;
-        let res = "";
-        for (let letter of lower) {
-            let val = letter.charCodeAt(0);
-            let letterind = val%97 + 1;
-            let newkey = powerMod(13, (29-(key + ind)-1) , 29);
-            let dec = (letterind * Number(newkey)) % 29;
-            res += String.fromCharCode(dec + 96);
-            ind += 1;
-            // console.log(letter);
-        }
-        document.getElementById("decresult").textContent = res;
-    }
+    document.getElementById("decresult").textContent = res;
+    
 }
