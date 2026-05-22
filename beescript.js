@@ -21,11 +21,14 @@ function hashPangram() {
 
 function powerMod(base, exp, mod) {
     let res = 1n;
-    base = base % mod;
-    while (exp > 0n) {
-        if (exp % 2n === 1n) res = (res * base) % mod;
-        base = (base * base) % mod;
-        exp = exp / 2n;
+    basebig = BigInt(base);
+    modbig = BigInt(mod);
+    expbig = BigInt(exp);
+    basebig = basebig % modbig;
+    while (expbig > 0n) {
+        if (expbig % 2n === 1n) res = (res * basebig) % modbig;
+        basebig = (basebig * basebig) % modbig;
+        expbig = expbig / 2n;
     }
     return res;
 }
