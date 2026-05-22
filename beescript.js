@@ -1,4 +1,4 @@
-export function hashPangram() {
+function hashPangram() {
 
     const str = document.getElementById("str-in").value;
 
@@ -31,7 +31,7 @@ function powerMod(base, exp, mod) {
 }
 
 
-export function encryptMsg() {
+function encryptMsg() {
 
     // letterind = ord(letter)%97 + 1
     // newkey = pow(g,  key , 29)
@@ -63,7 +63,7 @@ export function encryptMsg() {
 }
 
 
-export function decryptMsg() {
+function decryptMsg() {
 
     // letterind = ord(letter)%97 + 1
     // newkey = pow(g,  key , 29)
