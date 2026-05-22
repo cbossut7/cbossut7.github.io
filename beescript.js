@@ -78,10 +78,12 @@ function decryptMsg() {
         console.log(letter)
         let val = letter.charCodeAt(0);
         let letterind = val%97 + 1;
-        let newkey = powerMod(13,  (29 - (key + ind) - 1) , 29);
-        console.log(newkey)
+        console.log(key);
+        let tmp =  (29 - (key + ind) - 1);
+        let newkey = powerMod(13,  tmp , 29);
+        console.log(newkey);
         let dec = (letterind * Number(newkey)) % 29;
-        console.log(dec)
+        console.log(dec);
         res += String.fromCharCode(dec + 96);
         ind += 1;
         // console.log(letter);
