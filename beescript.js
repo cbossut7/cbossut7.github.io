@@ -33,10 +33,6 @@ function powerMod(base, exp, mod) {
 
 function encryptMsg() {
 
-    // letterind = ord(letter)%97 + 1
-    // newkey = pow(g,  key , 29)
-    // letmul = (letterind * newkey) % 29
-
     const str = document.getElementById("encmsg").value;
     const key = document.getElementById("result").value;
 
@@ -52,8 +48,13 @@ function encryptMsg() {
         for (let letter of lower) {
             let val = letter.charCodeAt(0);
             let letterind = val%97 + 1;
+            console.log(key);
+            console.log(ind);
+            console.log(letterind);
             let newkey = powerMod(13,  (key + ind) , 29);
+            console.log(newkey);
             let enc = (letterind * Number(newkey)) % 29;
+            console.log(enc);
             res += String.fromCharCode(enc + 96);
             ind += 1;
             // console.log(letter);
@@ -65,9 +66,6 @@ function encryptMsg() {
 
 function decryptMsg() {
 
-    // letterind = ord(letter)%97 + 1
-    // newkey = pow(g,  key , 29)
-    letmul = (letterind * newkey) % 29
 
     const str = document.getElementById("decmsg").value;
     const key = document.getElementById("result").value;
