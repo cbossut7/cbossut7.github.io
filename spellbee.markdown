@@ -26,7 +26,7 @@ layout: page
 
 <body>
     <h2>decrypt a word!</h2>
-    <input type="text" id="str-in" placeholder="enter word">
+    <input type="text" id="decmsg" placeholder="enter word">
     <button onclick="decryptMsg()">Decrypt</button>
     <p>decrypted: <strong id="decresult"></strong></p>
     <!-- <script src="beescript.js"></script> -->
