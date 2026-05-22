@@ -34,7 +34,7 @@ function powerMod(base, exp, mod) {
 function encryptMsg() {
 
     const str = document.getElementById("encmsg").value;
-    const key = document.getElementById("result").value;
+    const key = Number(document.getElementById("result").textContent);
 
     let trimmed = str.trim();
     const regex = /^[A-Za-z]+$/; 
@@ -68,7 +68,7 @@ function decryptMsg() {
 
 
     const str = document.getElementById("decmsg").value;
-    const key = document.getElementById("result").value;
+    const key = Number(document.getElementById("result").textContent);
 
     let trimmed = str.trim();
     const regex = /^[A-Za-z]+$/; 
