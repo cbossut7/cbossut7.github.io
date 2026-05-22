@@ -53,7 +53,7 @@ function encryptMsg() {
             let val = letter.charCodeAt(0);
             let letterind = val%97 + 1;
             let newkey = powerMod(13,  (key + ind) , 29);
-            let enc = (letterind * newkey) % 29;
+            let enc = (letterind * Number(newkey)) % 29;
             res += String.fromCharCode(enc + 96);
             ind += 1;
             // console.log(letter);
@@ -85,7 +85,7 @@ function decryptMsg() {
             let val = letter.charCodeAt(0);
             let letterind = val%97 + 1;
             let newkey = powerMod(13, (29-(key + ind)-1) , 29);
-            let dec = (letterind * newkey) % 29;
+            let dec = (letterind * Number(newkey)) % 29;
             res += String.fromCharCode(dec + 96);
             ind += 1;
             // console.log(letter);
