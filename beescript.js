@@ -1,15 +1,4 @@
-function calculateSum() {
-    // 1. Get the values from the input fields
-    // const input1 = document.getElementById("strin").value;
-
-    // 2. Convert the input strings to numbers (using parseFloat to allow decimals)
-    // const num1 = parseFloat(input1);
-
-    // // Optional: Basic validation to ensure inputs are valid numbers
-    // if (isNaN(num1) || isNaN(num2)) {
-    //     document.getElementById("result").textContent = "Invalid input";
-    //     return;
-    // }
+function hashPangram() {
 
     const str = document.getElementById("str-in").value;
 
@@ -23,9 +12,84 @@ function calculateSum() {
         let sum = 1; 
         for (let letter of lower) {
             let val = letter.charCodeAt(0);
-            sum = ((sum + 1) * val) %1809;
-            console.log(letter);
+            sum = ((sum + 1) * val) %1811;
+            // console.log(letter);
         }
         document.getElementById("result").textContent = sum;
+    }
+}
+
+function powerMod(base, exp, mod) {
+    let res = 1n;
+    base = base % mod;
+    while (exp > 0n) {
+        if (exp % 2n === 1n) res = (res * base) % mod;
+        base = (base * base) % mod;
+        exp = exp / 2n;
+    }
+    return res;
+}
+
+
+function encryptMsg() {
+
+    // letterind = ord(letter)%97 + 1
+    // newkey = pow(g,  key , 29)
+    // letmul = (letterind * newkey) % 29
+
+    const str = document.getElementById("encmsg").value;
+    const key = document.getElementById("result").value;
+
+    let trimmed = str.trim();
+    const regex = /^[A-Za-z]+$/; 
+    if (!regex.test(trimmed)){
+        document.getElementById("encresult").textContent = "error";
+    }
+    else {
+        let lower = trimmed.toLowerCase();
+        let ind = 0;
+        let res = "";
+        for (let letter of lower) {
+            let val = letter.charCodeAt(0);
+            let letterind = val%97 + 1;
+            let newkey = powerMod(13,  (key + ind) , 29);
+            let enc = (letterind * newkey) % 29;
+            res += String.fromCharCode(enc + 96);
+            ind += 1;
+            // console.log(letter);
+        }
+        document.getElementById("encresult").textContent = res;
+    }
+}
+
+
+function decryptMsg() {
+
+    // letterind = ord(letter)%97 + 1
+    // newkey = pow(g,  key , 29)
+    letmul = (letterind * newkey) % 29
+
+    const str = document.getElementById("decmsg").value;
+    const key = document.getElementById("result").value;
+
+    let trimmed = str.trim();
+    const regex = /^[A-Za-z]+$/; 
+    if (!regex.test(trimmed)){
+        document.getElementById("decresult").textContent = "error";
+    }
+    else {
+        let lower = trimmed.toLowerCase();
+        let ind = 0;
+        let res = "";
+        for (let letter of lower) {
+            let val = letter.charCodeAt(0);
+            let letterind = val%97 + 1;
+            let newkey = powerMod(13, (29-(key + ind)-1) , 29);
+            let dec = (letterind * newkey) % 29;
+            res += String.fromCharCode(dec + 96);
+            ind += 1;
+            // console.log(letter);
+        }
+        document.getElementById("decresult").textContent = res;
     }
 }
