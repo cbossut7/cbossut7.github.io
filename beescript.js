@@ -46,7 +46,7 @@ function encryptMsg() {
     }
     else {
         let lower = trimmed.toLowerCase();
-        let ind = 0;
+        let ind = 1;
         let res = "";
         for (let letter of lower) {
             let val = letter.charCodeAt(0);
