@@ -51,7 +51,7 @@ function encryptMsg() {
         for (let letter of lower) {
             let val = letter.charCodeAt(0);
             let letterind = val%97 + 1;
-            let pwr = Math.abs((key + ind) % 29 );
+            let pwr = Math.abs((key * ind) % 28 ); //mod p-1
             let newkey = powerMod(13,  pwr , 29);
             let enc = (letterind * Number(newkey)) % 29;
             res += String.fromCharCode(enc + 96);
