@@ -73,16 +73,16 @@ function decryptMsg() {
     let trimmed = str.trim();
     
     let lower = trimmed.toLowerCase();
-    let ind = 0;
+    let ind = 1;
     let res = "";
     for (let letter of lower) {
-        console.log(letter)
+        // console.log(letter)
         let val = letter.charCodeAt(0);
         let letterind = val%97 + 1;
-        console.log(key);
-        let pwr = Math.abs((key + ind) % 29 );
+        // console.log(key);
+        let pwr = Math.abs((key * ind) % 28 ); // p-1
         let decpwr =  (29 - pwr - 1);
-        console.log(decpwr);
+        // console.log(decpwr);
         
         let newkey = powerMod(13,  decpwr , 29);
         console.log(newkey);
