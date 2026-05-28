@@ -48,7 +48,7 @@ function encryptMsg() {
             document.getElementById("encresult").textContent = "error - word contains space or other unsupported character";
             break;
         }
-        let letterind = val%35 + 1;
+        let letterind = val - 34;
         let pwr = Math.abs((key * ind) % 88 ); //mod p-1
         let newkey = powerMod(13,  pwr , 89);
         let enc = (letterind * Number(newkey)) % 89;
@@ -65,7 +65,7 @@ function decryptMsg() {
 
 
     const str = document.getElementById("decmsg").value;
-    console.log(str)
+    // console.log(str)
     const key = Number(document.getElementById("result").textContent);
 
     let trimmed = str.trim();
@@ -74,7 +74,11 @@ function decryptMsg() {
     for (let letter of trimmed) {
         // console.log(letter)
         let val = letter.charCodeAt(0);
-        let letterind = val%35 + 1;
+        if (val > 122 || val < 35){
+            document.getElementById("encresult").textContent = "error - ciphertext contains space or other unsupported character";
+            break;
+        }
+        let letterind = val - 34;
         // console.log(key);
         let pwr = Math.abs((key * ind) % 88 ); // p-1
         let decpwr =  (89 - pwr - 1);
