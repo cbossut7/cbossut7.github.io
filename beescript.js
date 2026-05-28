@@ -40,26 +40,24 @@ function encryptMsg() {
     const key = Number(document.getElementById("result").textContent);
 
     let trimmed = str.trim();
-    const regex = /^[A-Za-z]+$/; 
-    if (!regex.test(trimmed)){
-        document.getElementById("encresult").textContent = "error";
-    }
-    else {
-        let lower = trimmed.toLowerCase();
-        let ind = 1;
-        let res = "";
-        for (let letter of lower) {
-            let val = letter.charCodeAt(0);
-            let letterind = val%97 + 1;
-            let pwr = Math.abs((key * ind) % 28 ); //mod p-1
-            let newkey = powerMod(13,  pwr , 29);
-            let enc = (letterind * Number(newkey)) % 29;
-            res += String.fromCharCode(enc + 96);
-            ind += 1;
-            // console.log(letter);
+    let ind = 1;
+    let res = "";
+    for (let letter of trimmed) {
+        let val = letter.charCodeAt(0);
+        if (val > 122 || val < 35){
+            document.getElementById("encresult").textContent = "error - word contains space or other unsupported character";
+            break;
         }
-        document.getElementById("encresult").textContent = res;
+        let letterind = val%35 + 1;
+        let pwr = Math.abs((key * ind) % 88 ); //mod p-1
+        let newkey = powerMod(13,  pwr , 89);
+        let enc = (letterind * Number(newkey)) % 89;
+        res += String.fromCharCode(enc + 34);
+        ind += 1;
+        // console.log(letter);
     }
+    document.getElementById("encresult").textContent = res;
+
 }
 
 
@@ -71,24 +69,22 @@ function decryptMsg() {
     const key = Number(document.getElementById("result").textContent);
 
     let trimmed = str.trim();
-    
-    let lower = trimmed.toLowerCase();
     let ind = 1;
     let res = "";
-    for (let letter of lower) {
+    for (let letter of trimmed) {
         // console.log(letter)
         let val = letter.charCodeAt(0);
-        let letterind = val%97 + 1;
+        let letterind = val%35 + 1;
         // console.log(key);
-        let pwr = Math.abs((key * ind) % 28 ); // p-1
-        let decpwr =  (29 - pwr - 1);
+        let pwr = Math.abs((key * ind) % 88 ); // p-1
+        let decpwr =  (89 - pwr - 1);
         // console.log(decpwr);
         
-        let newkey = powerMod(13,  decpwr , 29);
-        console.log(newkey);
-        let dec = (letterind * Number(newkey)) % 29;
-        console.log(dec);
-        res += String.fromCharCode(dec + 96);
+        let newkey = powerMod(13,  decpwr , 89);
+        // console.log(newkey);
+        let dec = (letterind * Number(newkey)) % 89;
+        // console.log(dec);
+        res += String.fromCharCode(dec + 34);
         ind += 1;
         // console.log(letter);
     }
