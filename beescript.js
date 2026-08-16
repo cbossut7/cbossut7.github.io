@@ -39,7 +39,8 @@ function encryptMsg() {
     const key = Number(document.getElementById("result").textContent);
 
     let trimmed = str.trim();
-    trimmed.replaceAll(" ", "`");
+    trimmed = trimmed.replaceAll(" ", "`");
+    console.log(trimmed);
     let ind = 1;
     let res = "";
     for (let letter of trimmed) {
@@ -92,7 +93,7 @@ function decryptMsg() {
         ind += 1;
         // console.log(letter);
     }
-    res.replaceAll("`", " ");
+    res = res.replaceAll("`", " ");
     document.getElementById("decresult").textContent = res;
     
 }
