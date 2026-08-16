@@ -1,7 +1,6 @@
 function hashPangram() {
 
     const str = document.getElementById("str-in").value;
-
     let trimmed = str.trim();
     const regex = /^[A-Za-z]+$/; 
     if (!regex.test(trimmed)){
@@ -40,6 +39,7 @@ function encryptMsg() {
     const key = Number(document.getElementById("result").textContent);
 
     let trimmed = str.trim();
+    trimmed.replaceAll(" ", "`");
     let ind = 1;
     let res = "";
     for (let letter of trimmed) {
@@ -92,6 +92,7 @@ function decryptMsg() {
         ind += 1;
         // console.log(letter);
     }
+    res.replaceAll("`", " ");
     document.getElementById("decresult").textContent = res;
     
 }
