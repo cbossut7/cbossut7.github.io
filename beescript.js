@@ -40,6 +40,7 @@ function encryptMsg() {
 
     let trimmed = str.trim();
     let error = false;
+    let res = "";
 
     if(trimmed.indexOf("`") !== -1 || trimmed.indexOf("'") !== -1){
         error = true;
@@ -48,7 +49,7 @@ function encryptMsg() {
         trimmed = trimmed.replaceAll("!", "'");
         // console.log(trimmed);
         let ind = 1;
-        let res = "";
+        
         
         for (let letter of trimmed) {
             let val = letter.charCodeAt(0);
