@@ -46,13 +46,13 @@ function encryptMsg() {
     } else {
         trimmed = trimmed.replaceAll(" ", "`");
         trimmed = trimmed.replaceAll("!", "'");
-        console.log(trimmed);
+        // console.log(trimmed);
         let ind = 1;
         let res = "";
         
         for (let letter of trimmed) {
             let val = letter.charCodeAt(0);
-            console.log(val);
+            // console.log(val);
             if (val > 122 || val < 35){
                 error = true;
                 break;
@@ -87,34 +87,31 @@ function decryptMsg() {
     let trimmed = str.trim();
     let error = false;
 
-    if(trimmed.indexOf("`") !== -1 || trimmed.indexOf("'") !== -1){
-        error = true;
-    } else {
-        let ind = 1;
-        let res = "";
-        
-        for (let letter of trimmed) {
-            // console.log(letter)
-            let val = letter.charCodeAt(0);
-            if (val > 122 || val < 35){
-                error = true;
-                break;
-            }
-            let letterind = val - 34;
-            // console.log(key);
-            let pwr = Math.abs((key * ind) % 88 ); // p-1
-            let decpwr =  (89 - pwr - 1);
-            // console.log(decpwr);
-            
-            let newkey = powerMod(13,  decpwr , 89);
-            // console.log(newkey);
-            let dec = (letterind * Number(newkey)) % 89;
-            // console.log(dec);
-            res += String.fromCharCode(dec + 34);
-            ind += 1;
-            // console.log(letter);
+    let ind = 1;
+    let res = "";
+    
+    for (let letter of trimmed) {
+        // console.log(letter)
+        let val = letter.charCodeAt(0);
+        if (val > 122 || val < 35){
+            error = true;
+            break;
         }
+        let letterind = val - 34;
+        // console.log(key);
+        let pwr = Math.abs((key * ind) % 88 ); // p-1
+        let decpwr =  (89 - pwr - 1);
+        // console.log(decpwr);
+        
+        let newkey = powerMod(13,  decpwr , 89);
+        // console.log(newkey);
+        let dec = (letterind * Number(newkey)) % 89;
+        // console.log(dec);
+        res += String.fromCharCode(dec + 34);
+        ind += 1;
+        // console.log(letter);
     }
+    
 
     if(error){
         document.getElementById("decresult").textContent = "error - ciphertext contains unsupported character";
