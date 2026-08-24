@@ -40,13 +40,16 @@ function encryptMsg() {
 
     let trimmed = str.trim();
     trimmed = trimmed.replaceAll(" ", "`");
+    trimmed = trimmed.replaceAll("!", "'");
     console.log(trimmed);
     let ind = 1;
     let res = "";
+    let error = false;
     for (let letter of trimmed) {
         let val = letter.charCodeAt(0);
+        console.log(val);
         if (val > 122 || val < 35){
-            document.getElementById("encresult").textContent = "error - word contains space or other unsupported character";
+            error = true;
             break;
         }
         let letterind = val - 34;
@@ -57,7 +60,12 @@ function encryptMsg() {
         ind += 1;
         // console.log(letter);
     }
-    document.getElementById("encresult").textContent = res;
+    if(error){
+        document.getElementById("encresult").textContent = "error - message contains unsupported character";
+    } else {
+        document.getElementById("encresult").textContent = res;
+    }
+    
 
 }
 
@@ -72,11 +80,12 @@ function decryptMsg() {
     let trimmed = str.trim();
     let ind = 1;
     let res = "";
+    let error = false;
     for (let letter of trimmed) {
         // console.log(letter)
         let val = letter.charCodeAt(0);
         if (val > 122 || val < 35){
-            document.getElementById("encresult").textContent = "error - ciphertext contains space or other unsupported character";
+            error = true;
             break;
         }
         let letterind = val - 34;
@@ -93,7 +102,14 @@ function decryptMsg() {
         ind += 1;
         // console.log(letter);
     }
-    res = res.replaceAll("`", " ");
-    document.getElementById("decresult").textContent = res;
+
+    if(error){
+        document.getElementById("decresult").textContent = "error - ciphertext contains unsupported character";
+    } else {
+        res = res.replaceAll("`", " ");
+        res = res.replaceAll("'", "!");
+        document.getElementById("decresult").textContent = res;
+    }
+
     
 }
