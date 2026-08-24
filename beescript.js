@@ -39,27 +39,34 @@ function encryptMsg() {
     const key = Number(document.getElementById("result").textContent);
 
     let trimmed = str.trim();
-    trimmed = trimmed.replaceAll(" ", "`");
-    trimmed = trimmed.replaceAll("!", "'");
-    console.log(trimmed);
-    let ind = 1;
-    let res = "";
     let error = false;
-    for (let letter of trimmed) {
-        let val = letter.charCodeAt(0);
-        console.log(val);
-        if (val > 122 || val < 35){
-            error = true;
-            break;
+
+    if(trimmed.indexOf("`") !== -1 || trimmed.indexOf("'") !== -1){
+        error = true;
+    } else {
+        trimmed = trimmed.replaceAll(" ", "`");
+        trimmed = trimmed.replaceAll("!", "'");
+        console.log(trimmed);
+        let ind = 1;
+        let res = "";
+        
+        for (let letter of trimmed) {
+            let val = letter.charCodeAt(0);
+            console.log(val);
+            if (val > 122 || val < 35){
+                error = true;
+                break;
+            }
+            let letterind = val - 34;
+            let pwr = Math.abs((key * ind) % 88 ); //mod p-1
+            let newkey = powerMod(13,  pwr , 89);
+            let enc = (letterind * Number(newkey)) % 89;
+            res += String.fromCharCode(enc + 34);
+            ind += 1;
+            // console.log(letter);
         }
-        let letterind = val - 34;
-        let pwr = Math.abs((key * ind) % 88 ); //mod p-1
-        let newkey = powerMod(13,  pwr , 89);
-        let enc = (letterind * Number(newkey)) % 89;
-        res += String.fromCharCode(enc + 34);
-        ind += 1;
-        // console.log(letter);
     }
+
     if(error){
         document.getElementById("encresult").textContent = "error - message contains unsupported character";
     } else {
@@ -78,29 +85,35 @@ function decryptMsg() {
     const key = Number(document.getElementById("result").textContent);
 
     let trimmed = str.trim();
-    let ind = 1;
-    let res = "";
     let error = false;
-    for (let letter of trimmed) {
-        // console.log(letter)
-        let val = letter.charCodeAt(0);
-        if (val > 122 || val < 35){
-            error = true;
-            break;
-        }
-        let letterind = val - 34;
-        // console.log(key);
-        let pwr = Math.abs((key * ind) % 88 ); // p-1
-        let decpwr =  (89 - pwr - 1);
-        // console.log(decpwr);
+
+    if(trimmed.indexOf("`") !== -1 || trimmed.indexOf("'") !== -1){
+        error = true;
+    } else {
+        let ind = 1;
+        let res = "";
         
-        let newkey = powerMod(13,  decpwr , 89);
-        // console.log(newkey);
-        let dec = (letterind * Number(newkey)) % 89;
-        // console.log(dec);
-        res += String.fromCharCode(dec + 34);
-        ind += 1;
-        // console.log(letter);
+        for (let letter of trimmed) {
+            // console.log(letter)
+            let val = letter.charCodeAt(0);
+            if (val > 122 || val < 35){
+                error = true;
+                break;
+            }
+            let letterind = val - 34;
+            // console.log(key);
+            let pwr = Math.abs((key * ind) % 88 ); // p-1
+            let decpwr =  (89 - pwr - 1);
+            // console.log(decpwr);
+            
+            let newkey = powerMod(13,  decpwr , 89);
+            // console.log(newkey);
+            let dec = (letterind * Number(newkey)) % 89;
+            // console.log(dec);
+            res += String.fromCharCode(dec + 34);
+            ind += 1;
+            // console.log(letter);
+        }
     }
 
     if(error){
